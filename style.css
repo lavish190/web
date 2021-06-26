@@ -1,0 +1,53 @@
+.column {
+    width: 100%;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.on {
+    color: white;
+    background-color: orangered;
+}
+
+.off {
+    color: orangered;
+    background-color: white;
+}
+
+.row {
+    display: flex;
+    content: "";
+    clear: both;
+}
+
+.icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.753); 
+  }
+
+.invisible{
+    display: none;
+}
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}

@@ -1,104 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic gridview</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dynamic gridview</title>
 
-    <style>
-        .column {
-            width: 100%;
-            padding: 10px;
-            margin: 8px;
-            border-radius: 12px;
-            text-align: center;
-        }
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-        .on {
-            color: white;
-            background-color: orangered;
-        }
+        <link rel="stylesheet" href="style.css"/>
 
-        .off {
-            color: orangered;
-            background-color: white;
-        }
+        <script src="/script.js"></script>
 
-        .row {
-            display: flex;
-            content: "";
-            clear: both;
-        }
-
-        .icon {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-    </style>
-    <script>
-        window.onload = function(){
-        var textList = ['One', 'Two', 'Three'];
-        var imgList = [];
-
-        var rows, i;
-        var columns = 2;
-        var pos = 0;
-        if(textList.length/2 == 0){
-            rows = textList.length/2;
-        }else{
-            rows = (textList.length/2) + 1;
-        }
-
-        var body = document.getElementsByTagName("BODY")[0];
-        for(i = 0; i < rows; i++){
-            let rDiv = document.createElement('div');
-            rDiv.id = 'Row' + (i + 1);
-            rDiv.className = 'row';
-            body.appendChild(rDiv);
-
-            let j;
-            for(j = 0; j < columns; j++){
-                if(pos < textList.length){
-                    let cDiv = document.createElement('div');
-                    cDiv.id = 'Col' + i + j;
-                    cDiv.className = 'column off';
-
-                    let cText = document.createTextNode(textList[pos]);
-                    let cH2 = document.createElement('h2');
-                    cH2.id = cText;
-
-                    let cImg = document.createElement('img');
-                    cImg.src = imgList[pos] ? imgList[pos] : 'https://picsum.photos/120';
-                    cImg.className = 'icon';
-
-                    cDiv.appendChild(cImg);
-                    cH2.appendChild(cText);
-                    cDiv.appendChild(cH2);
-
-                    cDiv.addEventListener("click", function(){
-                        if(cDiv.classList.contains('on')){
-                            cDiv.className = 'column off';
-                            cImg.className = 'icon off';
-                        }else{
-                            cDiv.className = 'column on';
-                            cImg.className = 'icon on';
-                        }
-                    });
-
-                    rDiv.appendChild(cDiv);
-
-                    ++pos;
-                }
-            }
-        }
-    }
-    </script>
-</head>
-<body style="background-color: #eeeeee;">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
-</body>
+    </head>
+    <body style="background-color: #eeeeee;">
+
+        <div id= "loading" class="center fullscreen">
+        
+            <div>
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_tyv1co0g.json" background="transparent"  speed="1"  style="width: 108px; height: 108px;" loop autoplay></lottie-player>
+           
+                <h4 style="color: grey;" class="font-roboto">Connecting...</h4>
+            </div>
+            
+        </div>
+
+    </body>
 </html>
