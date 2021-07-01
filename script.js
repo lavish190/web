@@ -1,12 +1,5 @@
 window.onload = function(){
 
-    function camelize(str) {
-        return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
-            if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-            return index === 0 ? match.toLowerCase() : match.toUpperCase();
-        });
-    }
-
 
     // const dataToSend = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
     // ,{
@@ -36,16 +29,16 @@ window.onload = function(){
             rows = (textList.length/2) + 1;
         }
 
-    var body = document.getElementsByTagName("BODY")[0];
+    var buttonsView = document.getElementById("mainButtonView");
 
     for(i = 0; i < rows; i++){
         
         let rDiv = document.createElement('div');
         rDiv.id = 'Row' + (i + 1);
         rDiv.className = 'row';
-        body.appendChild(rDiv);
+        buttonsView.appendChild(rDiv);
 
-        let j;
+        let j; 
         for(j = 0; j < columns; j++){
             if(pos < textList.length){
 
@@ -63,18 +56,19 @@ window.onload = function(){
                 cH2.className = "font-roboto";
 
                 let cImg = document.createElement('img');
-                cImg.src = '/img/' + deviceName + '.png';
+                cImg.id = deviceName;
+                cImg.src = '/img/' + deviceName + '-off.svg';
                 cImg.className = 'icon';
 
-                
                 if(deviceState == 0){
+                    cImg.src = '/img/' + cImg.id.toLowerCase() + '-off.svg';
                     cDiv.className = 'column off';
                     cImg.className = 'icon off';
                 }else{
+                    cImg.src = '/img/' + cImg.id.toLowerCase() + '-on.svg';
                     cDiv.className = 'column on';
                     cImg.className = 'icon on';
                 }
-
                 
                 cDiv.appendChild(cImg);
                 cH2.appendChild(cText);
@@ -89,8 +83,8 @@ window.onload = function(){
 
                     fetch('http://121.46.115.26/',{
                         method: "get",
-                        headers: { "Content-Type": "application/json" },
-                        body: dataToSend
+                        headers: { "Content-Type": "application/json" }
+                        //body: dataToSend
                         })
                     .then(response => response.text())
                     .then(json => console.log(json));
@@ -98,9 +92,11 @@ window.onload = function(){
                     if(cDiv.classList.contains('on')){
                         cDiv.className = 'column off';
                         cImg.className = 'icon off';
+                        cImg.src = '/img/' + cImg.id.toLowerCase() + '-off.svg';
                     }else{
                         cDiv.className = 'column on';
-                        cImg.className = 'icon on';
+                        cImg.className = 'icon on onIcon';
+                        cImg.src = '/img/' + cImg.id.toLowerCase() + '-on.svg';
                     }
                 });
 
@@ -113,6 +109,8 @@ window.onload = function(){
  
     let loadingElement = document.getElementById('loading');
     loadingElement.className = 'invisible';
+
+    buttonsView.className = "";
 
 });
 

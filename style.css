@@ -4,16 +4,30 @@
     margin: 8px;
     border-radius: 12px;
     text-align: center;
+    transition-property: all;
+    transition-delay: 0s;
+    transition-timing-function: ease-out;
+}
+
+#mainButtonView{
+    width: 40%;
+    margin: auto;
+}
+
+.column:hover{
+    box-shadow: 0 0 12px grey;
 }
 
 .on {
     color: white;
     background-color: orangered;
+    fill: white;
 }
 
 .off {
     color: orangered;
     background-color: white;
+    fill: orangered
 }
 
 .row {
@@ -24,6 +38,8 @@
 
 .icon {
     display: block;
+    height: 72px;
+    width: 72px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -34,6 +50,7 @@
     justify-content: center;
     text-align: center;
 }
+
 .fullscreen {
     position: fixed;
     top: 0;
