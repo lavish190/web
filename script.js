@@ -9,7 +9,8 @@ window.onload = function(){
     //     }
 
     //gets list of devices connected to the hardware module
-    fetch('http://121.46.115.26/')
+    let ip = 'http://192.168.1.107/'
+    fetch(ip)
     .then(response => response.text())
     .then(json => {
         console.log(json);
@@ -49,6 +50,8 @@ window.onload = function(){
                 
                 let cDiv = document.createElement('div');
                 cDiv.id = 'Col' + i + j;
+                cDiv.num = deviceId;
+                console.log(cDiv.num);
                 
                 let cText = document.createTextNode(deviceName);
                 let cH2 = document.createElement('h2');
@@ -57,15 +60,15 @@ window.onload = function(){
 
                 let cImg = document.createElement('img');
                 cImg.id = deviceName;
-                cImg.src = '/img/' + deviceName + '-off.svg';
+                cImg.src = './img/' + deviceName + '-off.svg';
                 cImg.className = 'icon';
 
                 if(deviceState == 0){
-                    cImg.src = '/img/' + cImg.id.toLowerCase() + '-off.svg';
+                    cImg.src = './img/' + cImg.id.toLowerCase() + '-off.svg';
                     cDiv.className = 'column off';
                     cImg.className = 'icon off';
                 }else{
-                    cImg.src = '/img/' + cImg.id.toLowerCase() + '-on.svg';
+                    cImg.src = './img/' + cImg.id.toLowerCase() + '-on.svg';
                     cDiv.className = 'column on';
                     cImg.className = 'icon on';
                 }
@@ -81,22 +84,27 @@ window.onload = function(){
                         "switch": "1"
                     });
 
-                    fetch('http://121.46.115.26/',{
-                        method: "get",
-                        headers: { "Content-Type": "application/json" }
-                        //body: dataToSend
-                        })
-                    .then(response => response.text())
-                    .then(json => console.log(json));
+                    // fetch(ip,{
+                    //     method: "get",
+                    //     headers: { "Content-Type": "application/json" }
+                    //     //body: dataToSend
+                    //     })
+                    
 
                     if(cDiv.classList.contains('on')){
+                        fetch(ip+cDiv.num+':0')
+                        .then(response => response.text())
+                        .then(json => console.log(json));
                         cDiv.className = 'column off';
                         cImg.className = 'icon off';
-                        cImg.src = '/img/' + cImg.id.toLowerCase() + '-off.svg';
+                        cImg.src = './img/' + cImg.id.toLowerCase() + '-off.svg';
                     }else{
+                        fetch(ip+cDiv.num+':1')
+                        .then(response => response.text())
+                        .then(json => console.log(json));
                         cDiv.className = 'column on';
                         cImg.className = 'icon on onIcon';
-                        cImg.src = '/img/' + cImg.id.toLowerCase() + '-on.svg';
+                        cImg.src = './img/' + cImg.id.toLowerCase() + '-on.svg';
                     }
                 });
 
